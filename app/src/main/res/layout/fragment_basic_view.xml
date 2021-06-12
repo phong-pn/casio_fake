@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="window"
+            type="com.example.casiophake.MainActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D0D5F4"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/cc"
+            android:layout_width="215dp"
+            android:layout_height="191dp"
+            app:layout_constraintBottom_toTopOf="@+id/grid_bottom_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/screen"
+            app:layout_constraintVertical_bias="0.056">
+
+            <ImageView
+                android:id="@+id/up_nav_button"
+                style="@style/nav_button_style"
+                android:layout_gravity="center|top"
+                app:layout_column="3"
+                app:layout_row="0"
+                app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+
+            <ImageView
+                android:id="@+id/left_nav_button"
+                style="@style/nav_button_style"
+                android:layout_gravity="center|left"
+                app:srcCompat="@drawable/ic_baseline_arrow_left_24" />
+
+            <ImageView
+                android:id="@+id/down_nav_button"
+                style="@style/nav_button_style"
+                android:layout_gravity="center|bottom"
+                app:layout_column="3"
+                app:layout_row="2"
+                app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+            <ImageView
+                android:id="@+id/right_nav_button"
+                style="@style/nav_button_style"
+                android:layout_gravity="center|right"
+                app:layout_column="4"
+                app:layout_row="1"
+                app:srcCompat="@drawable/ic_baseline_arrow_right_24" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/screen"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/grid_bottom_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:rowCount="5"
+            tools:layout_editor_absoluteX="16dp">
+
+            <Button
+                android:id="@+id/operator_minus"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="-"
+                app:layout_column="4"
+                app:layout_row="2" />
+
+            <Button
+                android:id="@+id/number_7"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="7"
+                app:layout_column="0"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/number_8"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="8"
+                app:layout_column="1"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/number_9"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="9"
+                app:layout_column="2"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/delete_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="DEL"
+                app:layout_column="3"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/clear_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="AC"
+                app:layout_column="4"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/number_4"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="4"
+                app:layout_column="0"
+                app:layout_row="1" />
+
+            <Button
+                android:id="@+id/number_5"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="5"
+                app:layout_column="1"
+                app:layout_row="1" />
+
+            <Button
+                android:id="@+id/number_6"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/operator_x"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="x"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/operator_div"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text=":" />
+
+            <Button
+                android:id="@+id/number_1"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/number_2"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="2" />
+
+
+            <Button
+                android:id="@+id/number_3"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="3"
+                app:layout_column="2"
+                app:layout_row="2" />
+
+            <Button
+                android:id="@+id/operator_plus"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="+"
+                app:layout_column="3"
+                app:layout_row="2" />
+
+            <Button
+                android:id="@+id/ans_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="Ans"
+                app:layout_column="3"
+                app:layout_row="3" />
+
+            <Button
+                android:id="@+id/equal_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/his_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="his"
+                app:layout_column="2"
+                app:layout_row="3" />
+
+            <Button
+                android:id="@+id/number_0"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="0"
+                app:layout_column="0"
+                app:layout_row="3" />
+
+            <Button
+                android:id="@+id/dot_button"
+                layout="@layout/button_caculator_layout"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="."
+                app:layout_column="1"
+                app:layout_row="3" />
+        </androidx.gridlayout.widget.GridLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

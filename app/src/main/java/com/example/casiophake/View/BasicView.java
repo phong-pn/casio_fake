@@ -32,7 +32,7 @@ import java.util.List;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class BasicView extends Fragment {
+public class BasicView extends Fragment implements ScreenRecycleViewAdapter.OnClickViewHolder {
     private FragmentBasicViewBinding binding;
 
     private RecyclerView screen;
@@ -49,7 +49,7 @@ public class BasicView extends Fragment {
             @Override
             public void onChanged(List<Model> models) {
                 screen.setLayoutManager(new LinearLayoutManager(requireActivity()));
-                screenAdapter = new ScreenRecycleViewAdapter(models);
+                screenAdapter = new ScreenRecycleViewAdapter(models, BasicView.this);
                 screenAdapter.setModelList(models);
                 screen.setAdapter(screenAdapter);
 
@@ -69,5 +69,10 @@ public class BasicView extends Fragment {
             }
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onClick(int position) {
+        screen.scrollToPosition(position);
     }
 }

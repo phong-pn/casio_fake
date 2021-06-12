@@ -19,9 +19,19 @@ import java.util.List;
 
 public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycleViewAdapter.ViewHolder> {
     private List<Model> modelList;
+    private OnClickViewHolder onClickViewHolder;
 
-    public ScreenRecycleViewAdapter(List<Model> modelList) {
+    public List<Model> getModelList() {
+        return modelList;
+    }
+
+    public OnClickViewHolder getOnClickViewHolder() {
+        return onClickViewHolder;
+    }
+
+    public ScreenRecycleViewAdapter(List<Model> modelList, OnClickViewHolder onClickViewHolder) {
         this.modelList = modelList;
+        this.onClickViewHolder = onClickViewHolder;
     }
 
     public void setModelList(List<Model> modelList) {
@@ -47,7 +57,7 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
     public int getItemCount() {
         return modelList.size();
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private EditText inputText;
         private TextView outputText;
 
@@ -59,7 +69,12 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
 
         @Override
         public void onClick(View v) {
+            onClickViewHolder.onClick(getAdapterPosition());
         }
+    }
+
+    public interface OnClickViewHolder{
+        void onClick(int position);
     }
 
 }

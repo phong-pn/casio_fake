@@ -1,5 +1,6 @@
 package com.example.casiophake.View;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,18 +37,19 @@ import java.util.List;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class BasicView extends Fragment implements ScreenRecycleViewAdapter.OnClickViewHolder {
+public class BasicView extends Fragment implements ScreenRecycleViewAdapter.ViewCallBack {
     private FragmentBasicViewBinding binding;
-     List<Model> modelList;
-
+    private List<Model> modelList;
     private RecyclerView screen;
     private ScreenRecycleViewAdapter screenAdapter;
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         binding = FragmentBasicViewBinding.inflate(inflater, container, false);
+
+        //set up for ScreenRecycleView and its adapter. The modelList of screen adapter is the value of ModelViewModel, which can update
+        //when database change. So ScreenRecycleView can update when database change
         screen = binding.screen;
         modelList = new ArrayList<>();
         screenAdapter = new ScreenRecycleViewAdapter(modelList, BasicView.this);
@@ -55,6 +59,7 @@ public class BasicView extends Fragment implements ScreenRecycleViewAdapter.OnCl
             screenAdapter.setModelList(models);
             screen.setAdapter(screenAdapter);
         });
+
         return binding.getRoot();
     }
 
@@ -63,15 +68,11 @@ public class BasicView extends Fragment implements ScreenRecycleViewAdapter.OnCl
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         ViewGroup gridBottomButton = binding.gridBottomButton;
+        //set the width and onClickListener for buttons in gridBottomButton
             for(int i=0; i<gridBottomButton.getChildCount();i++){
                 View item = gridBottomButton.getChildAt(i);
                 item.getLayoutParams().width = (Resources.getSystem().getDisplayMetrics().widthPixels)/5-24;
-                item.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onClickForBotton(v.getId());
-                    }
-                });
+                item.setOnClickListener(v -> onClickForButton(v.getId()));
 
             }
 
@@ -80,11 +81,12 @@ public class BasicView extends Fragment implements ScreenRecycleViewAdapter.OnCl
 
     @Override
     public void onClick(int position, ScreenRecycleViewAdapter.ViewHolder viewHolder) {
+        //when a item view in screen is clicked, screen will display all of it by calling scrollToPosition() method
         screen.scrollToPosition(position);
     }
 
-
-    public void onClickForBotton(int id){
+    /** Call when one of button is clicked*/
+    public void onClickForButton(int id){
         if(id==binding.ansButton.getId()){
 
         }

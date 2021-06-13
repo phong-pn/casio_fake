@@ -21,6 +21,7 @@ public class ModelViewModel extends AndroidViewModel {
         allModels = repository.getAllModels();
     }
 
+/** Call when the equal_button is clicked: it will insert model is showing on the screen into database*/
     public static void insertModel(Model model){
         repository.insertModel(model);
     }

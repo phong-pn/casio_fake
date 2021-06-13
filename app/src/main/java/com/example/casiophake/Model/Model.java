@@ -3,6 +3,7 @@ package com.example.casiophake.Model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
 @Entity(tableName = "model_table")
 public class Model {
     public Model(String s, float v) {

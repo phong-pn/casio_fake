@@ -1,15 +1,15 @@
 package com.example.casiophake.adapter;
 
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.casiophake.Model.Model;
@@ -17,25 +17,25 @@ import com.example.casiophake.R;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycleViewAdapter.ViewHolder> {
 
     private List<Model> modelList;
-    private OnClickViewHolder onClickViewHolder;
+    private ViewCallBack ViewCallBack;
 
     public List<Model> getModelList() {
         return modelList;
     }
 
-    public OnClickViewHolder getOnClickViewHolder() {
-        return onClickViewHolder;
+    public ViewCallBack getViewCallBack() {
+        return ViewCallBack;
     }
 
-    public ScreenRecycleViewAdapter(List<Model> modelList, OnClickViewHolder onClickViewHolder) {
+    public ScreenRecycleViewAdapter(List<Model> modelList, ViewCallBack ViewCallBack) {
         this.modelList = modelList;
-        this.onClickViewHolder = onClickViewHolder;
+        this.ViewCallBack = ViewCallBack;
     }
 
     public void setModelList(List<Model> modelList) {
@@ -54,7 +54,6 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
         Model model = modelList.get(position);
         holder.inputText.setText(model.getInput());
         holder.outputText.setText(Float.toString(model.getOutput()));
-        Log.d("ddd", Integer.toString(position));
 
     }
 
@@ -62,7 +61,7 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
     public int getItemCount() {
         return modelList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public EditText inputText;
         public TextView outputText;
 
@@ -70,23 +69,24 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
             super(itemView);
             inputText = itemView.findViewById(R.id.input_text);
             outputText = itemView.findViewById(R.id.output_text);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickViewHolder.onClick(getAdapterPosition(), ViewHolder.this);
-                }
-            });
+            itemView.setOnClickListener(v -> ViewCallBack.onClick(getAdapterPosition(), ViewHolder.this));
 
-            inputText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickViewHolder.onClick(getAdapterPosition(), ViewHolder.this);
-                }
-            });
+            // make soft keyboard don't show when inputText is focused
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                inputText.setShowSoftInputOnFocus(false);
+            }
+
+            inputText.setOnClickListener(v -> ViewCallBack.onClick(getAdapterPosition(), ViewHolder.this));
+        }
+
+        @Override
+        public void onClick(View v) {
+            ViewCallBack.onClick(getAdapterPosition(), ViewHolder.this);
         }
     }
 
-    public interface OnClickViewHolder{
+    /** Callback to view that hold adapter's recycleView*/
+    public interface ViewCallBack{
         void onClick(int position, ViewHolder viewHolder);
     }
 

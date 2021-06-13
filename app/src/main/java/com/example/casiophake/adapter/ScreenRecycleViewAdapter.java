@@ -1,6 +1,8 @@
 package com.example.casiophake.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,9 +17,11 @@ import com.example.casiophake.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycleViewAdapter.ViewHolder> {
+
     private List<Model> modelList;
     private OnClickViewHolder onClickViewHolder;
 
@@ -50,6 +54,7 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
         Model model = modelList.get(position);
         holder.inputText.setText(model.getInput());
         holder.outputText.setText(Float.toString(model.getOutput()));
+        Log.d("ddd", Integer.toString(position));
 
     }
 
@@ -57,24 +62,32 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
     public int getItemCount() {
         return modelList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private EditText inputText;
-        private TextView outputText;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public EditText inputText;
+        public TextView outputText;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             inputText = itemView.findViewById(R.id.input_text);
             outputText = itemView.findViewById(R.id.output_text);
-        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickViewHolder.onClick(getAdapterPosition(), ViewHolder.this);
+                }
+            });
 
-        @Override
-        public void onClick(View v) {
-            onClickViewHolder.onClick(getAdapterPosition());
+            inputText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickViewHolder.onClick(getAdapterPosition(), ViewHolder.this);
+                }
+            });
         }
     }
 
     public interface OnClickViewHolder{
-        void onClick(int position);
+        void onClick(int position, ViewHolder viewHolder);
     }
 
 }

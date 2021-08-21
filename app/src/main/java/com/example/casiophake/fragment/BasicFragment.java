@@ -1,6 +1,5 @@
-package com.example.casiophake.View;
+package com.example.casiophake.fragment;
 
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +66,10 @@ public class BasicView extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentBasicViewBinding.inflate(inflater, container, false);
 
+        getParentFragmentManager().beginTransaction()
+                .add(R.id.bottom_fragment_container, new BottomFragment((v)->onClick(v)))
+                .commit();
+
         ModelViewModel viewModel = new ViewModelProvider(this).get(ModelViewModel.class);
 
         if(ModelViewModel.getListExpressions().size()==0) ModelViewModel.insertExpression(new Expression(" ", 0));
@@ -113,59 +116,8 @@ public class BasicView extends Fragment {
         return binding.getRoot();
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
-         container = view.findViewById(R.id.container);
-        ViewTreeObserver vto = container.getViewTreeObserver();
-        vto.addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
-            @Override
-            public void onDraw() {
-                width = String.valueOf(container.getMeasuredWidth());
-                container.getViewTreeObserver().removeOnGlobalLayoutListener(this::onDraw);
-
-            }
-
-
-        });
-        Executors.newFixedThreadPool(1).execute(()->{
-            while (width == null) {}
-            int w = Integer.parseInt(width);
-            ViewGroup gridBottomButton = binding.gridBottomButton;
-
-            for(int i=0; i<gridBottomButton.getChildCount();i++){
-                View item = gridBottomButton.getChildAt(i);
-                Log.d("ahihi", "ddbh"+Integer.toString(w));
-                item.getLayoutParams().width = w/5-24;
-                item.setOnClickListener(v -> onClickForButton(v));
-            }
-            Log.d("ahihi", "ddbh"+Integer.toString(w));
-
-        });
-        while (width == null) {}
-     //   Log.d("ahihi", "cc"+Integer.toString(width));
-        //set the width and onClickListener for buttons in gridBottomButton
-        ViewGroup gridBottomButton = binding.gridBottomButton;
-
-
-//        for(int i=0; i<gridBottomButton.getChildCount();i++){
-//            View item = gridBottomButton.getChildAt(i);
-//           // Log.d("ahihi", "ddbh"+Integer.toString(width));
-//            item.getLayoutParams().width = 444/5-24;
-//            item.setOnClickListener(v -> onClickForButton(v));
-//        }
-        //Log.d("ahihi", "ddbh"+Integer.toString(width));
-
-
-        super.onViewCreated(view, savedInstanceState);
-    }
-
     public void onClick(View v) {
-        if(v.getId() == R.id.add_operator) {
-            expressionList.add(new Expression("",0));
-            observe.postValue(expressionList);
-        }
+        Log.d("vcll", ((Button)v).getText().toString());
     }
 
     /** Call when one of button is clicked*/
@@ -177,35 +129,35 @@ public class BasicView extends Fragment {
         StringBuffer inputText = new StringBuffer(input.getText().toString());
 
         switch (id){
-            case R.id.equal_button:
+            case R.id.equal:
                 Float output = Brain.solve(inputText.toString());
                 if(output!=null)
                     currentOperator.output.setText(output.toString());
                 ModelViewModel.insertExpression(new Expression(inputText.toString(), output));
                 break;
 
-            case R.id.number_0:
-            case R.id.number_1:
-            case R.id.number_2:
-            case R.id.number_3:
-            case R.id.number_4:
-            case R.id.number_5:
-            case R.id.number_6:
-            case R.id.number_7:
-            case R.id.number_8:
-            case R.id.number_9:
-            case R.id.operator_plus:
-            case R.id.operator_div:
-            case R.id.operator_minus:
-            case R.id.operator_x:
-            case R.id.dot_button:
-            case R.id.ans_button:
+            case R.id.zero:
+            case R.id.one:
+            case R.id.two:
+            case R.id.three:
+            case R.id.four:
+            case R.id.five:
+            case R.id.six:
+            case R.id.seven:
+            case R.id.eight:
+            case R.id.nine:
+            case R.id.plus:
+            case R.id.split:
+            case R.id.minus:
+            case R.id.multiply:
+            case R.id.dot:
+            case R.id.round_brackets:
                 inputText.append(button.getText().toString());
 
                 input.setText(inputText);
                 break;
 
-            case R.id.delete_button:
+            case R.id.delete:
                 if(inputText.length()>0) {
                     inputText.deleteCharAt(inputText.length() - 1);
                     input.setText(inputText);
@@ -213,7 +165,7 @@ public class BasicView extends Fragment {
                 }
                 break;
 
-            case R.id.clear_button:
+            case R.id.clear:
                 if(inputText.length()>0) {
                     inputText.delete(0, inputText.length());
                     input.setText(inputText);

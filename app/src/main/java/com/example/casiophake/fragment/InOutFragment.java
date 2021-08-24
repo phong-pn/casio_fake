@@ -27,19 +27,22 @@ public class InOutFragment extends Fragment {
         input = view.findViewById(R.id.input);
         output = view.findViewById(R.id.output);
     }
+
     private void focusOutput() {
-        output.setTextSize(30);
+        output.setTextSize(45);
         input.setTextSize(14);
     }
 
     private void focusInput() {
-        input.setTextSize(30);
-        output.setTextSize(14);
+        input.setTextSize(45);
+        output.setText("");
     }
 
     public void getInput(String inputText){
+        focusInput();
         switch (inputText){
             case "=":
+                focusOutput();
                 break;
 
             case "0":

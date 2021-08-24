@@ -11,9 +11,10 @@
     </style>
 
     <style name="keyboard" parent="Widget.MaterialComponents.Button">
+        <item name="android:drawable">@drawable/keyboard_draw</item>
         <item name="android:backgroundTint">#253557</item>
         <item name="android:layout_margin">8dp</item>
-        <item name="cornerRadius">16dp</item>
+        <item name="cornerRadius">20dp</item>
         <item name="android:textSize">24sp</item>
         <item name="fontFamily">sans-serif-thin</item>
         <item name="android:padding">1dp</item>

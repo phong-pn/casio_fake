@@ -1,11 +1,10 @@
 package com.example.casiophake;
 
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.casiophake.View.BasicView;
+import com.example.casiophake.fragment.BasicFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,11 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BasicView basicView = new BasicView();
+        BasicFragment basicFragment = new BasicFragment();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fragment, BasicView.class, null)
+                    .add(R.id.fragment, basicFragment)
                     .commit();
         }
     }

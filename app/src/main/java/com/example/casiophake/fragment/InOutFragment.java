@@ -9,22 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.casiophake.R;
 
-public class CaculateSpaceFragment extends Fragment {
-    public MutableLiveData<Integer> state = new MutableLiveData<>();
+public class InOutFragment extends Fragment {
     private TextView input, output;
-    public CaculateSpaceFragment(int state) {
-        this.state.postValue(state);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.caculate_space, container, false);
+        return inflater.inflate(R.layout.in_out_fragment, container, false);
     }
 
     @Override
@@ -32,20 +26,50 @@ public class CaculateSpaceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         input = view.findViewById(R.id.input);
         output = view.findViewById(R.id.output);
-        state.observe(getViewLifecycleOwner(), (state)->{
-            if(state == BasicFragment.FOCUS_INPUT) focusInput();
-            else focusOutput();
-        });
-        state.postValue(0);
     }
-
     private void focusOutput() {
-        output.setTextSize(24);
+        output.setTextSize(30);
         input.setTextSize(14);
     }
 
     private void focusInput() {
-        input.setTextSize(24);
+        input.setTextSize(30);
         output.setTextSize(14);
     }
-}
+
+    public void getInput(String inputText){
+        switch (inputText){
+            case "=":
+                break;
+
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+            case "/":
+            case "x":
+            case "+":
+            case "-":
+            case ".":
+            case "ANS":
+            case "%":
+
+                break;
+
+            case "D":
+
+
+                break;
+
+            case "C":
+
+                }
+        }
+    }
+

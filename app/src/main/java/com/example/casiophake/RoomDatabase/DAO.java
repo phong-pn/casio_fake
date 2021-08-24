@@ -5,17 +5,17 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.casiophake.Model.Model;
+import com.example.casiophake.Model.Expression;
 
 import java.util.List;
 
 @Dao
 interface DAO {
-    @Query("SELECT * FROM model_table")
-    LiveData<List<Model>> getAllModels();
+    @Query("SELECT * FROM expression_table")
+    LiveData<List<Expression>> getAllExpressions();
 
     @Insert
-    void insertModel(Model model);
+    void insertExpression(Expression expression);
 
 
 }

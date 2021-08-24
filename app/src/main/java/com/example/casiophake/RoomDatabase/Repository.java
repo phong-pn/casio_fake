@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.casiophake.Model.Model;
+import com.example.casiophake.Model.Expression;
 
 import java.util.List;
 
@@ -16,12 +16,12 @@ public class Repository {
         dao= db.dao();
     }
 
-    public LiveData<List<Model>> getAllModels(){
-        return dao.getAllModels();
+    public LiveData<List<Expression>> getAllExpressions(){
+        return dao.getAllExpressions();
     }
 
-    public void insertModel(Model model){
-        Database.executorService.execute(()->dao.insertModel(model));
+    public void insertExpression(Expression expression){
+        Database.executorService.execute(()->dao.insertExpression(expression));
     }
 
 }

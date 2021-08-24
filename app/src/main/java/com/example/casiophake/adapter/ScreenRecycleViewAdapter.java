@@ -1,7 +1,6 @@
 package com.example.casiophake.adapter;
 
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.casiophake.Model.Model;
+import com.example.casiophake.Model.Expression;
 import com.example.casiophake.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,10 +20,10 @@ import java.util.List;
 
 public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycleViewAdapter.ViewHolder> {
 
-    private List<Model> modelList;
+    private List<Expression> modelList;
     private ViewCallBack ViewCallBack;
 
-    public List<Model> getModelList() {
+    public List<Expression> getModelList() {
         return modelList;
     }
 
@@ -33,12 +31,12 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
         return ViewCallBack;
     }
 
-    public ScreenRecycleViewAdapter(List<Model> modelList, ViewCallBack ViewCallBack) {
+    public ScreenRecycleViewAdapter(List<Expression> modelList, ViewCallBack ViewCallBack) {
         this.modelList = modelList;
         this.ViewCallBack = ViewCallBack;
     }
 
-    public void setModelList(List<Model> modelList) {
+    public void setModelList(List<Expression> modelList) {
         this.modelList = modelList;
     }
 
@@ -51,7 +49,7 @@ public class ScreenRecycleViewAdapter extends RecyclerView.Adapter<ScreenRecycle
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ScreenRecycleViewAdapter.ViewHolder holder, int position) {
-        Model model = modelList.get(position);
+        Expression model = modelList.get(position);
         holder.inputText.setText(model.getInput());
         holder.outputText.setText(Float.toString(model.getOutput()));
 

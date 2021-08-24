@@ -6,13 +6,12 @@ import android.util.Log;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.casiophake.Model.Model;
+import com.example.casiophake.Model.Expression;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {Model.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {Expression.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
     private static Database instance;
     private static final String DATABASE_NAME = "model_table";
@@ -27,13 +26,11 @@ public abstract class Database extends RoomDatabase {
             if(instance==null){
                 if(!context.getDatabasePath(DATABASE_NAME).exists()) {
                     instance = Room.databaseBuilder(context, Database.class, DATABASE_NAME).build();
-                    Log.d("ccc","ddd");
                 }
                 else {
                     instance=Room.databaseBuilder(context, Database.class, DATABASE_NAME)
                             .createFromAsset(context.getDatabasePath(DATABASE_NAME).getPath())
                             .build();
-                    Log.d("ccc","ggg");
                 }
             }
         }

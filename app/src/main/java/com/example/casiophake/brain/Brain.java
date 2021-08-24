@@ -1,23 +1,19 @@
-package exercise;
+package com.example.casiophake.brain;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Main{
+public class Brain{
     private static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
-        System.out.println("nhap vao mySimp");
-        String s = sc.nextLine();
-        Solve(s);
-    }
+   
     public static int check(char c)
     {
         if(c == '(' || c == ')') return 0;
-        if(c == '*' || c == '/') return 2;
+        if(c == 'x' || c == '/') return 2;
         if(c == '+' || c == '-') return 1;
         return 3;
     }
-    public static String conver(String s)
+    public static String convert(String s)
     {
         Stack<Character> stk = new Stack<>();
         String res = "";
@@ -42,7 +38,7 @@ public class Main{
                 }
                 stk.pop();
             }
-            else if(s.charAt(i) == '+' || s.charAt(i) == '/' || s.charAt(i) == '*' || s.charAt(i) == '-')
+            else if(s.charAt(i) == '+' || s.charAt(i) == '/' || s.charAt(i) == 'x' || s.charAt(i) == '-')
             {
                 while(stk.size() > 0 && (check(stk.peek()) >= check(s.charAt(i))))
                 {
@@ -58,9 +54,9 @@ public class Main{
         }
         return res;
     }
-    public static void Solve(String s)
+    public static Number Solve(String s)
     {
-        s = conver(s);
+        s = convert(s);
         ///System.out.println(conver(s));
         int x = 0;
         Stack<Integer> st = new Stack<>();
@@ -83,13 +79,13 @@ public class Main{
                     int tmp = 0;
                     if (s.charAt(i) == '+') tmp = a + b;
                     if (s.charAt(i) == '-') tmp = a - b;
-                    if (s.charAt(i) == '*') tmp = a * b;
+                    if (s.charAt(i) == 'x') tmp = a * b;
                     if (s.charAt(i) == '/') tmp = a / b;
                     st.push(tmp);
             }
-        if(st.size() == 0) System.out.println(x);
+        if(st.size() == 0) return Float.valueOf(x);
         else {
-            System.out.println(st.peek());
+            return Float.valueOf(st.peek());
         }
     }
 }

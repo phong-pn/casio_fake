@@ -4,14 +4,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 
-@Entity(tableName = "model_table")
-public class Model {
-    public Model(String s, float v) {
+@Entity(tableName = "expression_table")
+public class Expression {
+    public Expression(String s, float v) {
         setInput(s);
         setOutput(v);
     }
 
-    public Model() {
+    public Expression() {
     }
 
     public long getId() {

@@ -14,7 +14,7 @@
             android:layout_gravity="fill_horizontal"
             android:background="@drawable/bottom_fragment_draw"
             android:backgroundTint="#1f2c47"
-            android:paddingBottom="24dp"
+            android:padding="24dp"
             app:columnCount="4"
             app:rowCount="5">
                 <Button

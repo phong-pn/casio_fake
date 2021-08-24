@@ -42,10 +42,13 @@ public class KeyBoardFragment extends Fragment {
         ViewTreeObserver vto = view.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(() -> {
             ViewGroup layout =  view.findViewById(R.id.buttons_caculator_container);
-            int sizeInDP = 8;
+
 
             int marginInDp = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, sizeInDP, getResources()
+                    TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+                            .getDisplayMetrics());
+            int paddingInDp = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                             .getDisplayMetrics());
 
             view.requestLayout();
@@ -53,9 +56,9 @@ public class KeyBoardFragment extends Fragment {
                 for (int i = 0; i < layout.getChildCount(); i++) {
                     View child = layout.getChildAt(i);
                     ViewGroup.LayoutParams params = child.getLayoutParams();
-                    params.width = layout.getMeasuredWidth()/4-2*marginInDp;
+                    params.width = (layout.getMeasuredWidth()-2*paddingInDp)/4-2*marginInDp;
+                    params.height = params.width;
                     child.setLayoutParams(params);
-                    Log.d("vcll", ((Button)child).getText().toString());
                     child.setOnClickListener(onButtonClick);
 
                 }

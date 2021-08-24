@@ -10,21 +10,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@null"
-                android:gravity="start|bottom"
-                android:padding="8dp"
+                android:gravity="end|bottom"
+                android:paddingRight="8dp"
+                android:paddingBottom="1dp"
                 android:textSize="18sp">
             </TextView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:backgroundTint="@color/black">
-
     </TextView>
             <TextView
                 android:id="@+id/output"
-                android:layout_gravity="right|end"
+                android:gravity="end|bottom"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:padding="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="1dp"
                 android:textSize="18sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

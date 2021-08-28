@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
         getWindow().setStatusBarColor(getResources().getColor(R.color.status_color));
+
     }
 
 }

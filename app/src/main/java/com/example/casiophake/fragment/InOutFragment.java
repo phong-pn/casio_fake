@@ -1,5 +1,7 @@
 package com.example.casiophake.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.example.casiophake.R;
 
 public class InOutFragment extends Fragment {
     private TextView input, output;
+    private View keyboardPlus;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -26,6 +29,7 @@ public class InOutFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         input = view.findViewById(R.id.input);
         output = view.findViewById(R.id.output);
+        keyboardPlus = requireActivity().findViewById(R.id.keyboard_plus);
     }
 
     private void focusOutput() {
@@ -43,6 +47,8 @@ public class InOutFragment extends Fragment {
         switch (inputText){
             case "=":
                 focusOutput();
+                hide();
+
                 break;
 
             case "0":
@@ -62,6 +68,8 @@ public class InOutFragment extends Fragment {
             case ".":
             case "ANS":
             case "%":
+                show();
+
 
                 break;
 
@@ -74,5 +82,26 @@ public class InOutFragment extends Fragment {
 
                 }
         }
+        public void show(){
+            keyboardPlus.setVisibility(View.VISIBLE);
+            keyboardPlus.animate()
+                    .translationY(0)
+                    .alpha(1.0f)
+                    .setListener(null);
+        }
+
+        public void hide(){
+            keyboardPlus.animate()
+                    .translationY(keyboardPlus.getHeight())
+                    .alpha(0.0f)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            keyboardPlus.setVisibility(View.GONE);
+                        }
+                    });
+        }
+
     }
 

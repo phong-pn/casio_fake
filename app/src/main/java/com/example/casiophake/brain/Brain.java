@@ -4,8 +4,9 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Brain{
-    private static Scanner sc = new Scanner(System.in);
-   
+    public static void main(String[] args) {
+        System.out.println(Solve("12 + 3 × (9 - 8))").toString());
+            }
     public static int check(char c)
     {
         if(c == '(' || c == ')') return 0;
@@ -57,10 +58,10 @@ public class Brain{
     public static Number Solve(String s)
     {
         s = convert(s);
-        ///System.out.println(conver(s));
         int x = 0;
         Stack<Integer> st = new Stack<>();
         for(int i = 0; i <= s.length()-1; i++)
+
             if(s.charAt(i) >= '0' && s.charAt(i) <= '9')
             {
                 x = x * 10 + s.charAt(i) - '0';

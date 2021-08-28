@@ -45,7 +45,7 @@ public class KeyBoardFragment extends Fragment {
 
 
             int marginInDp = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+                    TypedValue.COMPLEX_UNIT_DIP, 7, getResources()
                             .getDisplayMetrics());
             int paddingInDp = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 24, getResources()

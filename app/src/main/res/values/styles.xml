@@ -13,16 +13,29 @@
     <style name="keyboard" parent="Widget.MaterialComponents.Button">
         <item name="android:drawable">@drawable/keyboard_draw</item>
         <item name="android:backgroundTint">#253557</item>
-        <item name="android:layout_marginRight">7dp</item>
-        <item name="android:layout_marginLeft">7dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
 
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
 
         <item name="cornerRadius">20dp</item>
-        <item name="android:textSize">24sp</item>
-        <item name="fontFamily">sans-serif-thin</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/roboto</item>
         <item name="android:padding">1dp</item>
 
+    </style>
+
+    <style name="delete" >
+        <item name="background">@drawable/corner_background</item>
+        <item name="android:drawable">@drawable/keyboard_draw</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+
+        <item name="cornerRadius">20dp</item>
+        <item name="android:padding">1dp</item>
     </style>
 </resources>

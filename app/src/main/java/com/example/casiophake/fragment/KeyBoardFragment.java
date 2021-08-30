@@ -45,21 +45,21 @@ public class KeyBoardFragment extends Fragment {
 
 
             int marginInDp = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 7, getResources()
+                    TypedValue.COMPLEX_UNIT_DIP, 10, getResources()
                             .getDisplayMetrics());
             int paddingInDp = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
                             .getDisplayMetrics());
 
-            view.requestLayout();
             if (!isSetSucess.get()) {
                 for (int i = 0; i < layout.getChildCount(); i++) {
                     View child = layout.getChildAt(i);
                     ViewGroup.LayoutParams params = child.getLayoutParams();
                     params.width = (layout.getMeasuredWidth()-2*paddingInDp)/4-2*marginInDp;
-                    params.height = params.width;
+                    params.height = (int) (params.width*0.85);
                     child.setLayoutParams(params);
                     child.setOnClickListener(onButtonClick);
+                   Log.d("vcll", String.valueOf(child.getId()));
 
                 }
                 isSetSucess.set(true);

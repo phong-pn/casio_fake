@@ -22,12 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * status bar and navigation/system bar) with user interaction.
  */
 public class BasicFragment extends Fragment {
-    public static final String CURRENT_POSITION = "CURRENT_POSITION";
     private @NonNull BasicFragmentBinding binding;
-
-
-
-
     public BasicFragment() {
     }
 
@@ -44,7 +39,12 @@ public class BasicFragment extends Fragment {
 
 
         getParentFragmentManager().beginTransaction()
-                .add(R.id.keyboard_fragment_container, new KeyBoardFragment((v)-> inOutFragment.getInput(((Button)v).getText().toString())))
+                .add(R.id.keyboard_fragment_container, new KeyBoardFragment(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inOutFragment.getInput(v);
+                    }
+                }))
                 .add(R.id.in_out_fragment_container, inOutFragment)
                 .commit();
 

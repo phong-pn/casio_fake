@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import com.example.casiophake.R;
 
 public class InOutFragment extends Fragment {
     private TextView input, output;
-    private View keyboardPlus;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,7 +30,6 @@ public class InOutFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         input = view.findViewById(R.id.input);
         output = view.findViewById(R.id.output);
-        keyboardPlus = requireActivity().findViewById(R.id.keyboard_plus);
     }
 
     private void focusOutput() {
@@ -42,66 +42,50 @@ public class InOutFragment extends Fragment {
         output.setText("");
     }
 
-    public void getInput(String inputText){
+    public void getInput(View view){
         focusInput();
-        switch (inputText){
-            case "=":
+        int id = view.getId();
+        switch (id){
+            case R.id.equal:
                 focusOutput();
-                hide();
 
                 break;
 
-            case "0":
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-            case "/":
-            case "x":
-            case "+":
-            case "-":
-            case ".":
-            case "ANS":
-            case "%":
-                show();
+            case R.id.zero:
+            case R.id.one:
+            case R.id.two:
+            case R.id.twozezo:
+            case R.id.three:
+            case R.id.four:
+            case R.id.five:
+            case R.id.six:
+            case R.id.seven:
+            case R.id.eight:
+            case R.id.nine:
+            case R.id.plus:
+            case R.id.minus:
+            case R.id.multiply:
+            case R.id.split:
+            case R.id.luythua:
+            case R.id.giaithua:
+            case R.id.percent:
+            case R.id.mongoac:
+            case R.id.dongngoac:
+                focusInput();
+
+                break;
+
+            case R.id.delete:
 
 
                 break;
 
-            case "D":
-
-
-                break;
-
-            case "C":
+            case R.id.clear:
 
                 }
         }
-        public void show(){
-            keyboardPlus.setVisibility(View.VISIBLE);
-            keyboardPlus.animate()
-                    .translationY(0)
-                    .alpha(1.0f)
-                    .setListener(null);
-        }
 
-        public void hide(){
-            keyboardPlus.animate()
-                    .translationY(keyboardPlus.getHeight())
-                    .alpha(0.0f)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            keyboardPlus.setVisibility(View.GONE);
-                        }
-                    });
-        }
+
 
     }
 
